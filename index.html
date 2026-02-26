@@ -824,7 +824,15 @@
         • <strong>Move:</strong> Klik dan seret item yang sudah ditempatkan<br>
         • <strong>Delete:</strong> Klik tombol ❌ pada item<br>
         • <strong>Undo:</strong> Klik tombol ↶ Undo untuk mengembalikan<br>
-        • <strong>Konteks Situs:</strong> Tambahkan pemukiman, jalan, sungai, dll. untuk realisme perencanaan
+        • <strong>Konteks Situs:</strong> Perhatikan pemukiman, sungai, jalan dll. di kanvas saat menempatkan zona
+      </div>
+
+      <div class="warning-box" style="margin-top: var(--spacing-sm);">
+        <strong>⚠️ Pertimbangan Penempatan:</strong>
+        • Toilet/WC ≥30m dari sungai/sumur<br>
+        • Limbah medis ≥500m dari pemukiman<br>
+        • Genset menjauh dari jaringan listrik<br>
+        • IGD dekat jalan untuk akses ambulance
       </div>
 
       <div class="drawing-section">
@@ -843,140 +851,6 @@
           <div class="zone-palette">
             <div class="palette-title">📍 ZONA Fungsional</div>
             <div class="palette-items" id="paletteItems">
-              <div class="palette-item" draggable="true" data-zone="1" data-name="Komando & Admin">
-                <span class="zone-code">1</span>
-                <span>Komando</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="2" data-name="Rawat Inap Pria">
-                <span class="zone-code">2</span>
-                <span>Rawat Pria</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="3" data-name="Rawat Inap Wanita">
-                <span class="zone-code">3</span>
-                <span>Rawat Wanita</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="4" data-name="Rawat Jalan (OPD)">
-                <span class="zone-code">4</span>
-                <span>OPD</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="5" data-name="ICU">
-                <span class="zone-code">5</span>
-                <span>ICU</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="6" data-name="IGD">
-                <span class="zone-code">6</span>
-                <span>IGD</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="7" data-name="Akomodasi Staf">
-                <span class="zone-code">7</span>
-                <span>Staf</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="8" data-name="Ruang Operasi">
-                <span class="zone-code">8</span>
-                <span>OK</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="9" data-name="CSSD">
-                <span class="zone-code">9</span>
-                <span>CSSD</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="10" data-name="Farmasi">
-                <span class="zone-code">10</span>
-                <span>Farmasi</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="11" data-name="Toilet Staf">
-                <span class="zone-code">11</span>
-                <span>WC Staf</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="12" data-name="X-Ray">
-                <span class="zone-code">12</span>
-                <span>X-Ray</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="13" data-name="Toilet Pasien">
-                <span class="zone-code">13</span>
-                <span>WC Pasien</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="14" data-name="Purifikasi Air">
-                <span class="zone-code">14</span>
-                <span>Purifikasi</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="15" data-name="Tangki Air">
-                <span class="zone-code">15</span>
-                <span>Tangki Air</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="16" data-name="Dapur">
-                <span class="zone-code">16</span>
-                <span>Dapur</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="17" data-name="Gudang Logistik">
-                <span class="zone-code">17</span>
-                <span>Gudang</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="18" data-name="Genset">
-                <span class="zone-code">18</span>
-                <span>Genset</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="19" data-name="Keamanan">
-                <span class="zone-code">19</span>
-                <span>Keamanan</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="20" data-name="MHPSS" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                <span class="zone-code">—</span>
-                <span>MHPSS</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="21" data-name="EMTT Coordation Cell" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-                <span class="zone-code">🔴</span>
-                <span>EMTT Coord</span>
-              </div>
-              <div class="palette-item" draggable="true" data-zone="22" data-name="Health Emergency Operational Center" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
-                <span class="zone-code">🟠</span>
-                <span>HEOF</span>
-              </div>
-            </div>
-
-            <div class="palette-title" style="margin-top: var(--spacing-md); border-top: 1px solid var(--border); padding-top: var(--spacing-sm);">🏞️ KONTEKS SITUS</div>
-            <div class="palette-items">
-              <div class="palette-item" draggable="true" data-type="context" data-context="housing" data-name="Pemukiman Penduduk" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);">
-                <span class="zone-code">🏠</span>
-                <span>Pemukiman</span>
-              </div>
-              <div class="palette-item" draggable="true" data-type="context" data-context="road" data-name="Jalan Utama" style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);">
-                <span class="zone-code">🛤️</span>
-                <span>Jalan</span>
-              </div>
-              <div class="palette-item" draggable="true" data-type="context" data-context="river" data-name="Sungai" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);">
-                <span class="zone-code">🌊</span>
-                <span>Sungai</span>
-              </div>
-              <div class="palette-item" draggable="true" data-type="context" data-context="well" data-name="Sumur" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
-                <span class="zone-code">💧</span>
-                <span>Sumur</span>
-              </div>
-              <div class="palette-item" draggable="true" data-type="context" data-context="mountain" data-name="Gunung/Bukit" style="background: linear-gradient(135deg, #78716c 0%, #57534e 100%);">
-                <span class="zone-code">⛰️</span>
-                <span>Gunung</span>
-              </div>
-              <div class="palette-item" draggable="true" data-type="context" data-context="building" data-name="Gedung Eksisting" style="background: linear-gradient(135deg, #a8a29e 0%, #78716c 100%);">
-                <span class="zone-code">🏢</span>
-                <span>Gedung</span>
-              </div>
-              <div class="palette-item" draggable="true" data-type="context" data-context="trees" data-name="Area Hijau/Pohon" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);">
-                <span class="zone-code">🌳</span>
-                <span>Hijau</span>
-              </div>
-              <div class="palette-item" draggable="true" data-type="context" data-context="powerline" data-name="Jaringan Listrik" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);">
-                <span class="zone-code">⚡</span>
-                <span>Listrik</span>
-              </div>
-              <div class="palette-item" draggable="true" data-type="context" data-context="helipad" data-name="Helipad" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-                <span class="zone-code">🚁</span>
-                <span>Helipad</span>
-              </div>
-              <div class="palette-item" draggable="true" data-type="context" data-context="waste" data-name="Area Limbah" style="background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);">
-                <span class="zone-code">☢️</span>
-                <span>Limbah</span>
-              </div>
-            </div>
-          </div>
               <div class="palette-item" draggable="true" data-zone="1" data-name="Komando & Admin">
                 <span class="zone-code">1</span>
                 <span>Komando</span>
@@ -1177,21 +1051,25 @@
     // Grid size for snapping
     const GRID_SIZE = 20;
 
-    // Draw grid
+    // Draw grid with site context elements
     function drawGrid() {
       if (!showGrid) {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        drawSiteContext();
         return;
       }
 
       ctx.fillStyle = '#ffffff';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      // Draw site context first (background layer)
+      drawSiteContext();
+
+      // Draw grid lines on top
       ctx.strokeStyle = '#e5e7eb';
       ctx.lineWidth = 1;
 
-      // Draw grid lines
       for (let x = 0; x <= canvas.width; x += GRID_SIZE) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
@@ -1210,6 +1088,135 @@
       ctx.strokeStyle = '#2563eb';
       ctx.lineWidth = 3;
       ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+    }
+
+    // Draw site context elements (like a map background)
+    function drawSiteContext() {
+      // Road at the top (main access road)
+      ctx.fillStyle = '#6b7280';
+      ctx.fillRect(0, 0, canvas.width, 40);
+      // Road markings
+      ctx.strokeStyle = '#fbbf24';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([20, 10]);
+      ctx.beginPath();
+      ctx.moveTo(0, 20);
+      ctx.lineTo(canvas.width, 20);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Housing area on the left (existing settlement)
+      ctx.fillStyle = 'rgba(251, 191, 36, 0.3)';
+      ctx.fillRect(10, 60, 150, 120);
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(10, 60, 150, 120);
+      // Label
+      ctx.fillStyle = '#92400e';
+      ctx.font = 'bold 11px Arial';
+      ctx.fillText('🏠 Pemukiman', 20, 80);
+
+      // River at the bottom right
+      ctx.fillStyle = 'rgba(14, 165, 233, 0.4)';
+      ctx.beginPath();
+      ctx.moveTo(500, canvas.height - 60);
+      ctx.quadraticCurveTo(600, canvas.height - 100, 700, canvas.height - 60);
+      ctx.quadraticCurveTo(800, canvas.height - 20, 900, canvas.height - 60);
+      ctx.lineTo(900, canvas.height);
+      ctx.lineTo(500, canvas.height);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = '#0284c7';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      // Label
+      ctx.fillStyle = '#0c4a6e';
+      ctx.fillText('🌊 Sungai', 520, canvas.height - 50);
+
+      // Well (water source) on the right
+      ctx.fillStyle = '#06b6d4';
+      ctx.beginPath();
+      ctx.arc(canvas.width - 80, 150, 25, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#0891b2';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      // Label
+      ctx.fillStyle = '#164e63';
+      ctx.fillText('💧 Sumur', canvas.width - 100, 195);
+
+      // Existing building (school) on the right
+      ctx.fillStyle = 'rgba(168, 162, 158, 0.4)';
+      ctx.fillRect(canvas.width - 180, 200, 160, 100);
+      ctx.strokeStyle = '#78716c';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(canvas.width - 180, 200, 160, 100);
+      // Label
+      ctx.fillStyle = '#44403c';
+      ctx.fillText('🏢 Gedung Sekolah', canvas.width - 170, 220);
+
+      // Green area/trees on the bottom left
+      ctx.fillStyle = 'rgba(34, 197, 94, 0.2)';
+      ctx.beginPath();
+      ctx.arc(80, canvas.height - 80, 60, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#16a34a';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      // Label
+      ctx.fillStyle = '#14532d';
+      ctx.fillText('🌳 Area Hijau', 45, canvas.height - 75);
+
+      // Power lines along the top road
+      ctx.strokeStyle = '#fbbf24';
+      ctx.lineWidth = 2;
+      for (let x = 100; x < canvas.width; x += 200) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, 80);
+        ctx.stroke();
+        // Power pole
+        ctx.fillStyle = '#78716c';
+        ctx.fillRect(x - 3, 40, 6, 40);
+      }
+      ctx.fillStyle = '#92400e';
+      ctx.fillText('⚡ Jaringan Listrik', 120, 35);
+
+      // Helipad area on the far right
+      ctx.fillStyle = 'rgba(239, 68, 68, 0.2)';
+      ctx.beginPath();
+      ctx.ellipse(canvas.width - 60, 350, 50, 50, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#dc2626';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      // Cross marking
+      ctx.beginPath();
+      ctx.moveTo(canvas.width - 110, 350);
+      ctx.lineTo(canvas.width - 10, 350);
+      ctx.moveTo(canvas.width - 60, 300);
+      ctx.lineTo(canvas.width - 60, 400);
+      ctx.stroke();
+      // Label
+      ctx.fillStyle = '#7f1d1d';
+      ctx.fillText('🚁 Helipad', canvas.width - 85, 420);
+
+      // Waste area indicator (far from housing)
+      ctx.fillStyle = 'rgba(127, 29, 29, 0.2)';
+      ctx.fillRect(canvas.width - 120, canvas.height - 120, 100, 80);
+      ctx.strokeStyle = '#7f1d1d';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 5]);
+      ctx.strokeRect(canvas.width - 120, canvas.height - 120, 100, 80);
+      ctx.setLineDash([]);
+      // Label
+      ctx.fillStyle = '#7f1d1d';
+      ctx.fillText('☢️ Area Limbah', canvas.width - 115, canvas.height - 100);
+
+      // Legend/Distance indicators
+      ctx.fillStyle = '#374151';
+      ctx.font = '10px Arial';
+      ctx.fillText('Skala: 20px = 10 meter', 15, canvas.height - 10);
     }
 
     drawGrid();
@@ -1244,9 +1251,7 @@
     function handleDragStart(e) {
       draggedZone = {
         zone: e.target.dataset.zone,
-        name: e.target.dataset.name,
-        type: e.target.dataset.type || 'zone',
-        context: e.target.dataset.context || null
+        name: e.target.dataset.name
       };
       e.target.style.opacity = '0.5';
       e.dataTransfer.effectAllowed = 'copy';
@@ -1276,12 +1281,12 @@
       const x = snapToGridValue(e.clientX - rect.left);
       const y = snapToGridValue(e.clientY - rect.top);
 
-      addCanvasItem(draggedZone.zone, draggedZone.name, x, y, draggedZone.type, draggedZone.context);
+      addCanvasItem(draggedZone.zone, draggedZone.name, x, y);
       draggedZone = null;
     }
 
     // Add item to canvas
-    function addCanvasItem(zone, name, x, y, type = 'zone', context = null) {
+    function addCanvasItem(zone, name, x, y) {
       // Save state for undo
       saveAction();
 
@@ -1292,9 +1297,7 @@
         zone: zone,
         name: name,
         x: x,
-        y: y,
-        type: type,
-        context: context
+        y: y
       };
 
       placedItems.push(item);
@@ -1316,9 +1319,6 @@
       itemElement.style.top = item.y + 'px';
       itemElement.style.pointerEvents = 'auto';
 
-      // Check if this is a context item
-      const isContext = item.type === 'context';
-
       // Different colors for different zone types
       const colors = {
         '1': '#2563eb', '2': '#3b82f6', '3': '#ec4899', '4': '#10b981',
@@ -1329,41 +1329,14 @@
         '21': '#dc2626', '22': '#ea580c'
       };
 
-      const contextColors = {
-        'housing': '#f59e0b',
-        'road': '#4b5563',
-        'river': '#0ea5e9',
-        'well': '#06b6d4',
-        'mountain': '#78716c',
-        'building': '#a8a29e',
-        'trees': '#22c55e',
-        'powerline': '#fbbf24',
-        'helipad': '#ef4444',
-        'waste': '#7f1d1d'
-      };
-
-      const contextIcons = {
-        'housing': '🏠',
-        'road': '🛤️',
-        'river': '🌊',
-        'well': '💧',
-        'mountain': '⛰️',
-        'building': '🏢',
-        'trees': '🌳',
-        'powerline': '⚡',
-        'helipad': '🚁',
-        'waste': '☢️'
-      };
-
-      const bgColor = isContext ? (contextColors[item.context] || '#6b7280') : (colors[item.zone] || '#2563eb');
-      const icon = isContext ? (contextIcons[item.context] || '📍') : item.zone;
+      const bgColor = colors[item.zone] || '#2563eb';
 
       itemElement.innerHTML = `
         <div class="item-controls">
           <button class="item-control-btn delete" onclick="deleteItem('${item.id}')" title="Hapus">❌</button>
         </div>
-        <div class="item-content" style="background: ${bgColor}; ${isContext ? 'border: 2px dashed rgba(0,0,0,0.2);' : ''}">
-          <span style="background: rgba(255,255,255,0.3); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">${icon}</span>
+        <div class="item-content" style="background: ${bgColor}">
+          <span style="background: rgba(255,255,255,0.3); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem;">${item.zone}</span>
           <span>${item.name}</span>
         </div>
       `;
