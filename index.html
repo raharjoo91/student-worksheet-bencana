@@ -836,16 +836,6 @@
       </div>
 
       <div class="drawing-section">
-        <div class="canvas-toolbar">
-          <button class="tool-btn" onclick="undoLastAction()" title="Undo">↶ Undo</button>
-          <button class="tool-btn" onclick="clearAllItems()" title="Hapus Semua">🗑️ Hapus Semua</button>
-          <button class="tool-btn" onclick="toggleGrid()" title="Toggle Grid">📏 Grid</button>
-          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
-            <input type="checkbox" id="snapToGrid" checked style="width: 16px; height: 16px;">
-            Snap to Grid
-          </label>
-        </div>
-
         <div class="canvas-workspace">
           <!-- Zone Palette - Left Side -->
           <div class="zone-palette">
@@ -939,6 +929,17 @@
                 <span class="zone-code">🟠</span>
                 <span>HEOF</span>
               </div>
+            </div>
+
+            <!-- Toolbar buttons at bottom of palette -->
+            <div style="margin-top: var(--spacing-sm); padding-top: var(--spacing-sm); border-top: 1px solid var(--border);">
+              <button class="tool-btn" onclick="undoLastAction()" title="Undo" style="width: 100%; margin-bottom: 0.25rem;">↶ Undo</button>
+              <button class="tool-btn" onclick="clearAllItems()" title="Hapus Semua" style="width: 100%; margin-bottom: 0.25rem;">🗑️ Hapus Semua</button>
+              <button class="tool-btn" onclick="toggleGrid()" title="Toggle Grid" style="width: 100%; margin-bottom: 0.25rem;">📏 Toggle Grid</button>
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; margin-top: 0.5rem;">
+                <input type="checkbox" id="snapToGrid" checked style="width: 14px; height: 14px;">
+                Snap to Grid
+              </label>
             </div>
           </div>
 
