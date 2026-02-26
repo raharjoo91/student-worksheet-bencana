@@ -723,6 +723,16 @@
           <div class="name">Unit MHPSS</div>
           <div style="font-size: 0.75rem; color: var(--text-light);">Kesehatan Mental (Tipe 2/3)</div>
         </div>
+        <div class="zone-card">
+          <div class="code">🔴</div>
+          <div class="name">EMTT Coordination Cell</div>
+          <div style="font-size: 0.75rem; color: var(--text-light);">Koordinasi Tim Medis Darurat</div>
+        </div>
+        <div class="zone-card">
+          <div class="code">🟠</div>
+          <div class="name">Health Emergency Operational Center</div>
+          <div style="font-size: 0.75rem; color: var(--text-light);">Pusat Operasional Kedaruratan Kesehatan</div>
+        </div>
       </div>
     </div>
 
@@ -911,6 +921,14 @@
               <div class="palette-item" draggable="true" data-zone="20" data-name="MHPSS" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
                 <span class="zone-code">—</span>
                 <span>MHPSS</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="21" data-name="EMTT Coordation Cell" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                <span class="zone-code">🔴</span>
+                <span>EMTT Coord</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="22" data-name="Health Emergency Operational Center" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
+                <span class="zone-code">🟠</span>
+                <span>HEOF</span>
               </div>
             </div>
           </div>
@@ -1165,7 +1183,8 @@
         '5': '#ef4444', '6': '#f59e0b', '7': '#8b5cf6', '8': '#dc2626',
         '9': '#7c3aed', '10': '#059669', '11': '#6366f1', '12': '#0ea5e9',
         '13': '#64748b', '14': '#06b6d4', '15': '#0284c7', '16': '#f97316',
-        '17': '#78716c', '18': '#4b5563', '19': '#1f2937', '20': '#84cc16'
+        '17': '#78716c', '18': '#4b5563', '19': '#1f2937', '20': '#84cc16',
+        '21': '#dc2626', '22': '#ea580c'
       };
 
       const bgColor = colors[item.zone] || '#2563eb';
