@@ -1,0 +1,26 @@
+# Ignore heavy PDF reference files (these are just reference materials)
+*.pdf
+*.docx
+*.pptx
+
+# Keep essential files for GitHub Pages
+!README.md
+!index.html
+
+# Reference layout folder - include for the worksheet
+!REFERENCE LAYOUT/
+
+# Photos folder - practice photos from previous years (not needed for repo)
+Photos/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
