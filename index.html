@@ -51,7 +51,7 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       background: var(--bg-primary);
       padding: var(--spacing-xl);
@@ -190,84 +190,6 @@
       color: var(--success);
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: var(--spacing-md) 0;
-      font-size: 0.9rem;
-    }
-
-    th, td {
-      padding: var(--spacing-sm);
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    th {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: white;
-    }
-
-    .zone-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: var(--spacing-md);
-      margin: var(--spacing-md) 0;
-    }
-
-    .zone-card {
-      background: white;
-      padding: var(--spacing-md);
-      border-radius: var(--radius-md);
-      border-left: 4px solid var(--primary);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .zone-card .code {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 1.25rem;
-    }
-
-    .zone-card .name {
-      font-weight: 600;
-      margin-top: var(--spacing-xs);
-      font-size: 0.9rem;
-    }
-
-    .reference-layouts {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: var(--spacing-md);
-      margin: var(--spacing-md) 0;
-    }
-
-    .layout-card {
-      background: var(--bg-secondary);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      transition: transform 0.2s ease;
-    }
-
-    .layout-card:hover {
-      transform: scale(1.02);
-    }
-
-    .layout-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .layout-card .caption {
-      padding: var(--spacing-sm);
-      font-size: 0.875rem;
-      color: var(--text);
-      text-align: center;
-      font-weight: 600;
-    }
-
     .input-section {
       background: var(--bg-secondary);
       padding: var(--spacing-md);
@@ -303,7 +225,7 @@
       z-index: 100;
     }
 
-    /* Drawing Canvas Styles */
+    /* Drag and Drop Canvas Section */
     .drawing-section {
       background: var(--bg-secondary);
       padding: var(--spacing-md);
@@ -311,12 +233,80 @@
       margin: var(--spacing-lg) 0;
     }
 
+    .canvas-workspace {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+
+    .zone-palette {
+      width: 200px;
+      background: white;
+      border-radius: var(--radius-md);
+      padding: var(--spacing-sm);
+      border: 2px solid var(--border);
+      max-height: 650px;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .palette-title {
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--primary-dark);
+      text-align: center;
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .palette-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .palette-item {
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+      color: white;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-md);
+      font-size: 0.75rem;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      user-select: none;
+    }
+
+    .palette-item:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-md);
+    }
+
+    .palette-item:active {
+      cursor: grabbing;
+    }
+
+    .palette-item .zone-code {
+      background: rgba(255,255,255,0.3);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+
     .canvas-container {
+      flex: 1;
       position: relative;
       background: white;
       border: 2px solid var(--border);
       border-radius: var(--radius-md);
-      margin: var(--spacing-md) 0;
       overflow: hidden;
     }
 
@@ -324,6 +314,71 @@
       display: block;
       cursor: crosshair;
       background: white;
+    }
+
+    /* Draggable items on canvas */
+    .canvas-item {
+      position: absolute;
+      cursor: move;
+      user-select: none;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .canvas-item:hover {
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    .canvas-item.selected {
+      box-shadow: 0 0 0 3px var(--accent);
+    }
+
+    .canvas-item .item-content {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem;
+      border-radius: var(--radius-md);
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .canvas-item .item-controls {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      gap: 0.25rem;
+    }
+
+    .canvas-item:hover .item-controls,
+    .canvas-item.selected .item-controls {
+      display: flex;
+    }
+
+    .item-control-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .item-control-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .item-control-btn.delete {
+      background: var(--danger);
     }
 
     .canvas-toolbar {
@@ -365,28 +420,66 @@
       cursor: pointer;
     }
 
-    .zone-stamps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--spacing-xs);
-      margin-top: var(--spacing-sm);
+    .reference-layouts {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--spacing-md);
+      margin: var(--spacing-md) 0;
     }
 
-    .zone-stamp {
-      padding: 0.25rem 0.5rem;
-      background: var(--primary-light);
-      color: white;
+    .layout-card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s ease;
+    }
+
+    .layout-card:hover {
+      transform: scale(1.02);
+    }
+
+    .layout-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .layout-card .caption {
+      padding: var(--spacing-sm);
+      font-size: 0.875rem;
+      color: var(--text);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .zone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+    }
+
+    .zone-card {
+      background: white;
+      padding: var(--spacing-md);
       border-radius: var(--radius-md);
-      font-size: 0.75rem;
-      cursor: pointer;
-      border: none;
+      border-left: 4px solid var(--primary);
+      box-shadow: var(--shadow-sm);
     }
 
-    .zone-stamp:hover {
-      background: var(--primary);
+    .zone-card .code {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.25rem;
     }
 
-    /* Action Buttons */
+    .zone-card .name {
+      font-weight: 600;
+      margin-top: var(--spacing-xs);
+      font-size: 0.9rem;
+    }
+
     .action-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -436,18 +529,34 @@
       background: #dc2626;
     }
 
+    .help-tip {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      padding: var(--spacing-sm);
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      margin-top: var(--spacing-sm);
+      border-left: 4px solid var(--warning);
+    }
+
+    .help-tip strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
     @media (max-width: 768px) {
       body { padding: var(--spacing-sm); }
       .container { padding: var(--spacing-md); }
       h1 { font-size: 1.5rem; }
       .timer { font-size: 1rem; padding: var(--spacing-xs) var(--spacing-sm); }
-      #drawingCanvas { width: 100%; }
+      .canvas-workspace { flex-direction: column; }
+      .zone-palette { width: 100%; max-height: 150px; }
+      .palette-items { flex-direction: row; flex-wrap: wrap; }
     }
 
     @media print {
       body { background: white; padding: 0; }
       .container { box-shadow: none; }
-      .timer, .canvas-toolbar, .action-buttons { display: none; }
+      .timer, .canvas-toolbar, .action-buttons, .item-controls { display: none; }
     }
   </style>
 </head>
@@ -694,57 +803,123 @@
       </div>
     </div>
 
-    <!-- AREA MENGGAMBAR -->
+    <!-- AREA DESAIN DENGAN DRAG & DROP -->
     <div class="section">
-      <h2>Area Desain Situs - Gambar Tata Letak Anda</h2>
-      <p>Gunakan kanvas di bawah ini untuk menggambar tata letak situs 2D Anda.</p>
+      <h2>Area Desain Situs - Drag & Drop</h2>
+      <p><strong>🎯 Cara menggunakan:</strong> Tarik zona dari panel kiri dan lepas di kanvas. Klik item untuk memindahkan, gunakan tombol kontrol untuk menghapus.</p>
+
+      <div class="help-tip">
+        <strong>💡 Tips:</strong>
+        • <strong>Drag & Drop:</strong> Tarik zona dari panel kiri ke kanvas<br>
+        • <strong>Move:</strong> Klik dan seret item yang sudah ditempatkan<br>
+        • <strong>Delete:</strong> Klik tombol ❌ pada item<br>
+        • <strong>Undo:</strong> Klik tombol ↶ Undo untuk mengembalikan
+      </div>
 
       <div class="drawing-section">
         <div class="canvas-toolbar">
-          <button class="tool-btn active" onclick="setTool('pen')" title="Pena">✏️ Pena</button>
-          <button class="tool-btn" onclick="setTool('eraser')" title="Penghapus">🧹 Penghapus</button>
-          <button class="tool-btn" onclick="setTool('text')" title="Teks">📝 Teks</button>
-          <button class="tool-btn" onclick="setTool('rect')" title="Kotak">⬜ Kotak</button>
-          <button class="tool-btn" onclick="setTool('circle')" title="Lingkaran">⭕ Lingkaran</button>
-
-          <input type="color" class="color-picker" id="colorPicker" value="#2563eb" title="Pilih Warna">
-
-          <select id="brushSize" class="tool-btn" onchange="setBrushSize(this.value)">
-            <option value="2">Tipis</option>
-            <option value="4" selected>Normal</option>
-            <option value="8">Tebal</option>
-            <option value="12">Sangat Tebal</option>
-          </select>
-
-          <button class="tool-btn" onclick="undoCanvas()" title="Undo">↶ Undo</button>
-          <button class="tool-btn" onclick="clearCanvas()" title="Hapus Semua">🗑️ Hapus</button>
+          <button class="tool-btn" onclick="undoLastAction()" title="Undo">↶ Undo</button>
+          <button class="tool-btn" onclick="clearAllItems()" title="Hapus Semua">🗑️ Hapus Semua</button>
+          <button class="tool-btn" onclick="toggleGrid()" title="Toggle Grid">📏 Grid</button>
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+            <input type="checkbox" id="snapToGrid" checked style="width: 16px; height: 16px;">
+            Snap to Grid
+          </label>
         </div>
 
-        <div class="zone-stamps">
-          <button class="zone-stamp" onclick="addStamp(1)">1. Komando</button>
-          <button class="zone-stamp" onclick="addStamp(2)">2. Rawat Inap Pria</button>
-          <button class="zone-stamp" onclick="addStamp(3)">3. Rawat Inap Wanita</button>
-          <button class="zone-stamp" onclick="addStamp(4)">4. OPD</button>
-          <button class="zone-stamp" onclick="addStamp(5)">5. ICU</button>
-          <button class="zone-stamp" onclick="addStamp(6)">6. IGD</button>
-          <button class="zone-stamp" onclick="addStamp(7)">7. Staf</button>
-          <button class="zone-stamp" onclick="addStamp(8)">8. OK</button>
-          <button class="zone-stamp" onclick="addStamp(9)">9. CSSD</button>
-          <button class="zone-stamp" onclick="addStamp(10)">10. Farmasi</button>
-          <button class="zone-stamp" onclick="addStamp(11)">11. Toilet Staf</button>
-          <button class="zone-stamp" onclick="addStamp(12)">12. X-Ray</button>
-          <button class="zone-stamp" onclick="addStamp(13)">13. Toilet Pasien</button>
-          <button class="zone-stamp" onclick="addStamp(14)">14. Purifikasi</button>
-          <button class="zone-stamp" onclick="addStamp(15)">15. Tangki Air</button>
-          <button class="zone-stamp" onclick="addStamp(16)">16. Dapur</button>
-          <button class="zone-stamp" onclick="addStamp(17)">17. Gudang</button>
-          <button class="zone-stamp" onclick="addStamp(18)">18. Genset</button>
-          <button class="zone-stamp" onclick="addStamp(19)">19. Keamanan</button>
-          <button class="zone-stamp" onclick="addStamp(20)">MHPSS</button>
-        </div>
+        <div class="canvas-workspace">
+          <!-- Zone Palette - Left Side -->
+          <div class="zone-palette">
+            <div class="palette-title">📍 ZONA Fungsional</div>
+            <div class="palette-items" id="paletteItems">
+              <div class="palette-item" draggable="true" data-zone="1" data-name="Komando & Admin">
+                <span class="zone-code">1</span>
+                <span>Komando</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="2" data-name="Rawat Inap Pria">
+                <span class="zone-code">2</span>
+                <span>Rawat Pria</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="3" data-name="Rawat Inap Wanita">
+                <span class="zone-code">3</span>
+                <span>Rawat Wanita</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="4" data-name="Rawat Jalan (OPD)">
+                <span class="zone-code">4</span>
+                <span>OPD</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="5" data-name="ICU">
+                <span class="zone-code">5</span>
+                <span>ICU</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="6" data-name="IGD">
+                <span class="zone-code">6</span>
+                <span>IGD</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="7" data-name="Akomodasi Staf">
+                <span class="zone-code">7</span>
+                <span>Staf</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="8" data-name="Ruang Operasi">
+                <span class="zone-code">8</span>
+                <span>OK</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="9" data-name="CSSD">
+                <span class="zone-code">9</span>
+                <span>CSSD</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="10" data-name="Farmasi">
+                <span class="zone-code">10</span>
+                <span>Farmasi</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="11" data-name="Toilet Staf">
+                <span class="zone-code">11</span>
+                <span>WC Staf</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="12" data-name="X-Ray">
+                <span class="zone-code">12</span>
+                <span>X-Ray</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="13" data-name="Toilet Pasien">
+                <span class="zone-code">13</span>
+                <span>WC Pasien</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="14" data-name="Purifikasi Air">
+                <span class="zone-code">14</span>
+                <span>Purifikasi</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="15" data-name="Tangki Air">
+                <span class="zone-code">15</span>
+                <span>Tangki Air</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="16" data-name="Dapur">
+                <span class="zone-code">16</span>
+                <span>Dapur</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="17" data-name="Gudang Logistik">
+                <span class="zone-code">17</span>
+                <span>Gudang</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="18" data-name="Genset">
+                <span class="zone-code">18</span>
+                <span>Genset</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="19" data-name="Keamanan">
+                <span class="zone-code">19</span>
+                <span>Keamanan</span>
+              </div>
+              <div class="palette-item" draggable="true" data-zone="20" data-name="MHPSS" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <span class="zone-code">—</span>
+                <span>MHPSS</span>
+              </div>
+            </div>
+          </div>
 
-        <div class="canvas-container">
-          <canvas id="drawingCanvas" width="1100" height="600"></canvas>
+          <!-- Canvas - Right Side -->
+          <div class="canvas-container" id="canvasContainer">
+            <canvas id="drawingCanvas" width="900" height="600"></canvas>
+            <div id="itemsLayer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -835,224 +1010,313 @@
       saveToLocalStorage();
     }
 
-    // Drawing Canvas
+    // Canvas and Drag & Drop functionality
     const canvas = document.getElementById('drawingCanvas');
     const ctx = canvas.getContext('2d');
-    let isDrawing = false;
-    let currentTool = 'pen';
-    let brushSize = 4;
-    let currentColor = '#2563eb';
-    let lastX = 0;
-    let lastY = 0;
-    let history = [];
+    const canvasContainer = document.getElementById('canvasContainer');
+    const itemsLayer = document.getElementById('itemsLayer');
 
-    // Set canvas size
-    function resizeCanvas() {
-      const container = canvas.parentElement;
-      const rect = container.getBoundingClientRect();
-      canvas.width = Math.min(1100, rect.width - 4);
-      canvas.height = 600;
-      redrawCanvas();
-    }
+    let showGrid = true;
+    let placedItems = [];
+    let actionHistory = [];
+    let itemIdCounter = 0;
 
-    // Initialize canvas
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    // Grid size for snapping
+    const GRID_SIZE = 20;
 
     // Draw grid
     function drawGrid() {
+      if (!showGrid) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        return;
+      }
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
       ctx.strokeStyle = '#e5e7eb';
       ctx.lineWidth = 1;
-      const gridSize = 20;
 
-      for (let x = 0; x < canvas.width; x += gridSize) {
+      // Draw grid lines
+      for (let x = 0; x <= canvas.width; x += GRID_SIZE) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
         ctx.lineTo(x, canvas.height);
         ctx.stroke();
       }
 
-      for (let y = 0; y < canvas.height; y += gridSize) {
+      for (let y = 0; y <= canvas.height; y += GRID_SIZE) {
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(canvas.width, y);
         ctx.stroke();
       }
+
+      // Draw site boundary indicator
+      ctx.strokeStyle = '#2563eb';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
     }
 
     drawGrid();
 
-    // Save state for undo
-    function saveState() {
-      history.push(canvas.toDataURL());
-      if (history.length > 20) history.shift();
-    }
-
-    // Undo
-    function undoCanvas() {
-      if (history.length > 0) {
-        const img = new Image();
-        img.onload = function() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          drawGrid();
-          ctx.drawImage(img, 0, 0);
-        };
-        img.src = history.pop();
-      }
-    }
-
-    function redrawCanvas() {
+    // Toggle grid
+    function toggleGrid() {
+      showGrid = !showGrid;
       drawGrid();
     }
 
-    function clearCanvas() {
-      if (confirm('Apakah Anda yakin ingin menghapus semua gambar?')) {
-        saveState();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawGrid();
-        stamps = [];
-      }
+    // Snap to grid function
+    function snapToGridValue(value) {
+      if (!document.getElementById('snapToGrid').checked) return value;
+      return Math.round(value / GRID_SIZE) * GRID_SIZE;
     }
 
-    // Tool selection
-    function setTool(tool) {
-      currentTool = tool;
-      document.querySelectorAll('.canvas-toolbar .tool-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-    }
+    // Palette drag events
+    const paletteItems = document.querySelectorAll('.palette-item');
 
-    function setBrushSize(size) {
-      brushSize = parseInt(size);
-    }
-
-    // Color picker
-    document.getElementById('colorPicker').addEventListener('change', function() {
-      currentColor = this.value;
+    paletteItems.forEach(item => {
+      item.addEventListener('dragstart', handleDragStart);
+      item.addEventListener('dragend', handleDragEnd);
     });
 
-    // Drawing events
-    canvas.addEventListener('mousedown', startDrawing);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', stopDrawing);
-    canvas.addEventListener('mouseout', stopDrawing);
+    // Canvas drop events
+    canvasContainer.addEventListener('dragover', handleDragOver);
+    canvasContainer.addEventListener('drop', handleDrop);
+    canvasContainer.addEventListener('dragleave', handleDragLeave);
 
-    // Touch support
-    canvas.addEventListener('touchstart', handleTouch);
-    canvas.addEventListener('touchmove', handleTouchMove);
-    canvas.addEventListener('touchend', stopDrawing);
+    let draggedZone = null;
 
-    function handleTouch(e) {
+    function handleDragStart(e) {
+      draggedZone = {
+        zone: e.target.dataset.zone,
+        name: e.target.dataset.name
+      };
+      e.target.style.opacity = '0.5';
+      e.dataTransfer.effectAllowed = 'copy';
+    }
+
+    function handleDragEnd(e) {
+      e.target.style.opacity = '1';
+    }
+
+    function handleDragOver(e) {
       e.preventDefault();
-      const touch = e.touches[0];
-      const rect = canvas.getBoundingClientRect();
-      lastX = touch.clientX - rect.left;
-      lastY = touch.clientY - rect.top;
-      isDrawing = true;
+      e.dataTransfer.dropEffect = 'copy';
+      canvasContainer.style.borderColor = '#2563eb';
     }
 
-    function handleTouchMove(e) {
-      if (!isDrawing) return;
+    function handleDragLeave(e) {
+      canvasContainer.style.borderColor = '#e5e7eb';
+    }
+
+    function handleDrop(e) {
       e.preventDefault();
+      canvasContainer.style.borderColor = '#e5e7eb';
+
+      if (!draggedZone) return;
+
+      const rect = canvasContainer.getBoundingClientRect();
+      const x = snapToGridValue(e.clientX - rect.left);
+      const y = snapToGridValue(e.clientY - rect.top);
+
+      addCanvasItem(draggedZone.zone, draggedZone.name, x, y);
+      draggedZone = null;
+    }
+
+    // Add item to canvas
+    function addCanvasItem(zone, name, x, y) {
+      // Save state for undo
+      saveAction();
+
+      const itemId = `item-${itemIdCounter++}`;
+
+      const item = {
+        id: itemId,
+        zone: zone,
+        name: name,
+        x: x,
+        y: y
+      };
+
+      placedItems.push(item);
+      renderCanvasItem(item);
+      saveToLocalStorage();
+    }
+
+    // Render item on canvas
+    function renderCanvasItem(item) {
+      const existingElement = document.getElementById(item.id);
+      if (existingElement) {
+        existingElement.remove();
+      }
+
+      const itemElement = document.createElement('div');
+      itemElement.id = item.id;
+      itemElement.className = 'canvas-item';
+      itemElement.style.left = item.x + 'px';
+      itemElement.style.top = item.y + 'px';
+      itemElement.style.pointerEvents = 'auto';
+
+      // Different colors for different zone types
+      const colors = {
+        '1': '#2563eb', '2': '#3b82f6', '3': '#ec4899', '4': '#10b981',
+        '5': '#ef4444', '6': '#f59e0b', '7': '#8b5cf6', '8': '#dc2626',
+        '9': '#7c3aed', '10': '#059669', '11': '#6366f1', '12': '#0ea5e9',
+        '13': '#64748b', '14': '#06b6d4', '15': '#0284c7', '16': '#f97316',
+        '17': '#78716c', '18': '#4b5563', '19': '#1f2937', '20': '#84cc16'
+      };
+
+      const bgColor = colors[item.zone] || '#2563eb';
+
+      itemElement.innerHTML = `
+        <div class="item-controls">
+          <button class="item-control-btn delete" onclick="deleteItem('${item.id}')" title="Hapus">❌</button>
+        </div>
+        <div class="item-content" style="background: ${bgColor}">
+          <span style="background: rgba(255,255,255,0.3); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem;">${item.zone}</span>
+          <span>${item.name}</span>
+        </div>
+      `;
+
+      // Make item draggable within canvas
+      itemElement.addEventListener('mousedown', startItemDrag);
+      itemElement.addEventListener('touchstart', startItemTouchDrag, { passive: false });
+
+      itemsLayer.appendChild(itemElement);
+    }
+
+    // Move existing item
+    let movingItem = null;
+    let moveOffsetX = 0;
+    let moveOffsetY = 0;
+
+    function startItemDrag(e) {
+      if (e.target.classList.contains('item-control-btn')) return;
+
+      e.preventDefault();
+      movingItem = e.target.closest('.canvas-item');
+      const rect = movingItem.getBoundingClientRect();
+      moveOffsetX = e.clientX - rect.left;
+      moveOffsetY = e.clientY - rect.top;
+
+      document.addEventListener('mousemove', moveItem);
+      document.addEventListener('mouseup', stopItemMove);
+    }
+
+    function startItemTouchDrag(e) {
+      if (e.target.classList.contains('item-control-btn')) return;
+
+      e.preventDefault();
+      movingItem = e.target.closest('.canvas-item');
+      const rect = movingItem.getBoundingClientRect();
       const touch = e.touches[0];
-      const rect = canvas.getBoundingClientRect();
-      const x = touch.clientX - rect.left;
-      const y = touch.clientY - rect.top;
-      drawLine(lastX, lastY, x, y);
-      lastX = x;
-      lastY = y;
+      moveOffsetX = touch.clientX - rect.left;
+      moveOffsetY = touch.clientY - rect.top;
+
+      document.addEventListener('touchmove', moveItemTouch, { passive: false });
+      document.addEventListener('touchend', stopItemMove);
     }
 
-    function startDrawing(e) {
-      isDrawing = true;
-      [lastX, lastY] = [e.offsetX, e.offsetY];
+    function moveItem(e) {
+      if (!movingItem) return;
 
-      if (currentTool === 'text') {
-        const text = prompt('Masukkan teks:');
-        if (text) {
-          saveState();
-          ctx.font = `${brushSize * 3}px Arial`;
-          ctx.fillStyle = currentColor;
-          ctx.fillText(text, lastX, lastY);
+      const rect = canvasContainer.getBoundingClientRect();
+      let newX = e.clientX - rect.left - moveOffsetX;
+      let newY = e.clientY - rect.top - moveOffsetY;
+
+      // Boundary check
+      newX = Math.max(0, Math.min(newX, rect.width - movingItem.offsetWidth));
+      newY = Math.max(0, Math.min(newY, rect.height - movingItem.offsetHeight));
+
+      // Snap to grid
+      newX = snapToGridValue(newX);
+      newY = snapToGridValue(newY);
+
+      movingItem.style.left = newX + 'px';
+      movingItem.style.top = newY + 'px';
+    }
+
+    function moveItemTouch(e) {
+      if (!movingItem) return;
+      e.preventDefault();
+
+      const rect = canvasContainer.getBoundingClientRect();
+      const touch = e.touches[0];
+      let newX = touch.clientX - rect.left - moveOffsetX;
+      let newY = touch.clientY - rect.top - moveOffsetY;
+
+      // Boundary check
+      newX = Math.max(0, Math.min(newX, rect.width - movingItem.offsetWidth));
+      newY = Math.max(0, Math.min(newY, rect.height - movingItem.offsetHeight));
+
+      // Snap to grid
+      newX = snapToGridValue(newX);
+      newY = snapToGridValue(newY);
+
+      movingItem.style.left = newX + 'px';
+      movingItem.style.top = newY + 'px';
+    }
+
+    function stopItemMove() {
+      if (movingItem) {
+        // Update item position in data
+        const itemId = movingItem.id;
+        const item = placedItems.find(i => i.id === itemId);
+        if (item) {
+          item.x = parseInt(movingItem.style.left);
+          item.y = parseInt(movingItem.style.top);
         }
-        isDrawing = false;
+        movingItem = null;
+        saveToLocalStorage();
       }
+      document.removeEventListener('mousemove', moveItem);
+      document.removeEventListener('mouseup', stopItemMove);
+      document.removeEventListener('touchmove', moveItemTouch);
+      document.removeEventListener('touchend', stopItemMove);
+    }
 
-      if (currentTool === 'rect') {
-        const width = prompt('Lebar kotak (px):', '60');
-        const height = prompt('Tinggi kotak (px):', '40');
-        if (width && height) {
-          saveState();
-          ctx.strokeStyle = currentColor;
-          ctx.lineWidth = brushSize;
-          ctx.strokeRect(lastX, lastY, parseInt(width), parseInt(height));
-        }
-        isDrawing = false;
+    // Delete item
+    function deleteItem(itemId) {
+      saveAction();
+      const element = document.getElementById(itemId);
+      if (element) {
+        element.remove();
       }
+      placedItems = placedItems.filter(item => item.id !== itemId);
+      saveToLocalStorage();
+    }
 
-      if (currentTool === 'circle') {
-        const radius = prompt('Jari-jari lingkaran (px):', '30');
-        if (radius) {
-          saveState();
-          ctx.strokeStyle = currentColor;
-          ctx.lineWidth = brushSize;
-          ctx.beginPath();
-          ctx.arc(lastX, lastY, parseInt(radius), 0, Math.PI * 2);
-          ctx.stroke();
-        }
-        isDrawing = false;
+    // Clear all items
+    function clearAllItems() {
+      if (confirm('Apakah Anda yakin ingin menghapus semua item?')) {
+        saveAction();
+        itemsLayer.innerHTML = '';
+        placedItems = [];
+        drawGrid();
+        saveToLocalStorage();
       }
     }
 
-    function draw(e) {
-      if (!isDrawing) return;
-      if (currentTool !== 'pen' && currentTool !== 'eraser') return;
-
-      drawLine(lastX, lastY, e.offsetX, e.offsetY);
-      [lastX, lastY] = [e.offsetX, e.offsetY];
+    // Save action for undo
+    function saveAction() {
+      actionHistory.push(JSON.stringify(placedItems));
+      if (actionHistory.length > 20) actionHistory.shift();
     }
 
-    function drawLine(x1, y1, x2, y2) {
-      ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.lineTo(x2, y2);
-      ctx.strokeStyle = currentTool === 'eraser' ? '#ffffff' : currentColor;
-      ctx.lineWidth = currentTool === 'eraser' ? brushSize * 3 : brushSize;
-      ctx.lineCap = 'round';
-      ctx.stroke();
-    }
+    // Undo last action
+    function undoLastAction() {
+      if (actionHistory.length > 0) {
+        const previousState = JSON.parse(actionHistory.pop());
+        placedItems = previousState;
 
-    function stopDrawing() {
-      if (isDrawing) {
-        saveState();
+        // Clear and re-render all items
+        itemsLayer.innerHTML = '';
+        placedItems.forEach(item => renderCanvasItem(item));
+        saveToLocalStorage();
+        showNotification('Undo berhasil!');
       }
-      isDrawing = false;
-    }
-
-    // Zone stamps
-    let stamps = [];
-
-    const zoneNames = {
-      1: 'Komando', 2: 'Rawat Pria', 3: 'Rawat Wanita', 4: 'OPD',
-      5: 'ICU', 6: 'IGD', 7: 'Staf', 8: 'OK', 9: 'CSSD',
-      10: 'Farmasi', 11: 'WC Staf', 12: 'X-Ray', 13: 'WC Pasien',
-      14: 'Purifikasi', 15: 'Tangki Air', 16: 'Dapur', 17: 'Gudang',
-      18: 'Genset', 19: 'Keamanan', 20: 'MHPSS'
-    };
-
-    function addStamp(zoneNum) {
-      const zoneName = zoneNames[zoneNum];
-      const x = 50 + (stamps.length % 10) * 100;
-      const y = 50 + Math.floor(stamps.length / 10) * 80;
-
-      saveState();
-      ctx.fillStyle = currentColor;
-      ctx.fillRect(x - 40, y - 20, 80, 40);
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 12px Arial';
-      ctx.textAlign = 'center';
-      ctx.fillText(`${zoneNum}. ${zoneName}`, x, y + 5);
-
-      stamps.push({ num: zoneNum, name: zoneName, x, y });
     }
 
     // Local Storage
@@ -1062,7 +1326,7 @@
         teamMembers: document.getElementById('teamMembers').value,
         scenario: document.getElementById('scenarioSelect').value,
         notes: document.getElementById('teamNotes').value,
-        canvasData: canvas.toDataURL(),
+        placedItems: placedItems,
         checkedItems: []
       };
 
@@ -1084,15 +1348,16 @@
         document.getElementById('scenarioSelect').value = data.scenario || '';
         document.getElementById('teamNotes').value = data.notes || '';
 
-        // Restore canvas
-        if (data.canvasData) {
-          const img = new Image();
-          img.onload = function() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawGrid();
-            ctx.drawImage(img, 0, 0);
-          };
-          img.src = data.canvasData;
+        // Restore placed items
+        if (data.placedItems && data.placedItems.length > 0) {
+          placedItems = data.placedItems;
+          let maxId = 0;
+          placedItems.forEach(item => {
+            const idNum = parseInt(item.id.replace('item-', ''));
+            if (idNum > maxId) maxId = idNum;
+            renderCanvasItem(item);
+          });
+          itemIdCounter = maxId + 1;
         }
 
         // Restore checkboxes
@@ -1160,11 +1425,42 @@
     }
 
     // Download canvas as image
-    function downloadAsImage() {
+    async function downloadAsImage() {
+      showNotification('Membuat gambar...');
+
+      // Create a temporary canvas that includes both the grid and items
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      const tempCtx = tempCanvas.getContext('2d');
+
+      // Draw the main canvas
+      tempCtx.drawImage(canvas, 0, 0);
+
+      // Draw each item
+      const items = document.querySelectorAll('.canvas-item');
+      items.forEach(item => {
+        const x = parseInt(item.style.left);
+        const y = parseInt(item.style.top);
+        const content = item.querySelector('.item-content');
+        const rect = content.getBoundingClientRect();
+
+        // Draw item background
+        const bgColor = content.style.background;
+        tempCtx.fillStyle = bgColor;
+        tempCtx.fillRect(x, y, rect.width, rect.height);
+
+        // Draw item text
+        tempCtx.fillStyle = '#ffffff';
+        tempCtx.font = 'bold 12px Arial';
+        const text = content.textContent.trim();
+        tempCtx.fillText(text, x + 10, y + 18);
+      });
+
       const link = document.createElement('a');
       const teamName = document.getElementById('teamName').value || 'Tim';
       link.download = `Desain_Rumah_Sakit_Lapangan_${teamName}.png`;
-      link.href = canvas.toDataURL();
+      link.href = tempCanvas.toDataURL();
       link.click();
       showNotification('Gambar desain didownload!');
     }
